@@ -1,0 +1,1 @@
+/home/itok01/.zshrc
