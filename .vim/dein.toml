@@ -1,1 +1,71 @@
-/home/itok01/.vim/dein.toml
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+hook_add = '''
+syntax enable
+set background=dark
+colorscheme solarized
+'''
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+hook_add = '''
+let g:airline_powerline_fonts = 1
+let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled = 1
+noremap <silent><Space>d :bdelete<CR>
+noremap <silent><Space>p :bprevious<CR>
+noremap <silent><Space>n :bnext<CR>
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+noremap <silent><Space>e :NERDTreeToggle<CR>
+'''
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+let g:indentLine_color_term = 111
+let g:indentLine_color_gui = '#BBDEFB'
+let g:indentLine_char = ''
+'''
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+if !has('nvim')
+call dein#add('roxma/nvim-yarp')
+call dein#add('roxma/vim-hug-neovim-rpc')
+endif
+let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+
+[[plugins]]
+repo = 'zchee/deoplete-clang'
+hook_add = '''
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
+'''
+
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+
+[[plugins]]
+repo = 'cohama/lexima.vim'

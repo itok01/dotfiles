@@ -1,7 +1,7 @@
 #!/bin/sh
 
-ln -sf ~/.zshrc ./.zshrc
+ln -f ~/.zshrc ./.zshrc
 
-ln -sf ~/.vimrc ./.vimrc
-ln -sf ~/.config/nvim/init.vim ./.config/nvim/init.vim
-ln -sf ~/.vim/dein.toml ./.vim/dein.toml
+ln -f ~/.vimrc ./.vimrc
+ln -f ~/.config/nvim/init.vim ./.config/nvim/init.vim
+ln -f ~/.vim/dein.toml ./.vim/dein.toml
