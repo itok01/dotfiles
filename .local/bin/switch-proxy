@@ -1,0 +1,26 @@
+#!/bin/sh
+
+_PROXY=''
+_USERNAME=''
+_PASSWORD=''
+_DNS=''
+
+_RESOLV_CONF='/etc/resolv.conf'
+
+_DNS_STATE=$(grep ${_DNS} ${_RESOLV_CONF})
+
+if [ -n "$_DNS_STATE" ] ; then
+  export http_proxy="http://${_USERNAME}:${_PASSWORD}@${_PROXY}"
+  export https_proxy="$http_proxy"
+  export ftp_proxy="$http_proxy"
+  export rsync_proxy="$http_proxy"
+  export no_proxy='127.0.0.1,localhost'
+  echo "Enabled proxy."
+else
+  export http_proxy=''
+  export https_proxy=''
+  export ftp_proxy=''
+  export rsync_proxy=''
+  export no_proxy=''
+  echo "Disabled proxy."
+fi

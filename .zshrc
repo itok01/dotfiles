@@ -1,6 +1,6 @@
 PATH="${PATH}:${HOME}/.local/bin"
 
-source update-proxy
+# source switch-proxy
 
 source ~/.zplug/init.zsh
 
