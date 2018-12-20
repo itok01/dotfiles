@@ -53,6 +53,7 @@ call dein#add('roxma/nvim-yarp')
 call dein#add('roxma/vim-hug-neovim-rpc')
 endif
 let g:deoplete#enable_at_startup = 1
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 '''
 
 [[plugins]]
@@ -61,7 +62,6 @@ repo = 'Shougo/neco-syntax'
 [[plugins]]
 repo = 'zchee/deoplete-clang'
 hook_add = '''
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
 '''
 
 [[plugins]]
