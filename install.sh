@@ -18,7 +18,7 @@ while true; do
   case $_AWNSER in
     [Yy] | [Yy][Ee][Ss] | '' )
       echo 'Installing...'
-      curl -fsSL https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh | sh
+      curl -fsSL https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh | sh -s '~/.cache/dein'
     break;;
     [Nn] | [Nn][Oo] | * )
     break;;
