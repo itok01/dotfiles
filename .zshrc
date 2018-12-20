@@ -1,4 +1,5 @@
 PATH="${PATH}:${HOME}/.local/bin"
+PATH="${PATH}:${HOME}/go/bin"
 
 # source switch-proxy
 
@@ -79,3 +80,13 @@ alias vi=nvim
 alias sudo='sudo '
 alias poweroff='systemctl poweroff'
 alias reboot='systemctl reboot'
+
+alias l='ls -lFh'
+alias la='ls -lAFh'
+alias lr='ls -tRFh'
+
+alias pacupg='sudo pacman -Syu'
+alias pacin='sudo pacman -S'
+
+alias yaupg='yay -Syu'
+alias yain='yay -S'
