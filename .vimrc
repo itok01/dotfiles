@@ -50,9 +50,11 @@ set termguicolors
 set wrapscan
 noremap j gj
 noremap k gk
-nnoremap <Space>a ggVG<CR>
-nnoremap <Space>q :q<CR>
-nnoremap <Space>w :w<CR>
-nnoremap <Space>o o<ESC>
-nnoremap <Space>O O<ESC>
 inoremap jj <Esc>
+
+let mapleader = "\<Space>"
+nnoremap <Leader>a ggVG<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>o o<ESC>
+nnoremap <Leader>O O<ESC>
