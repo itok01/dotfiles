@@ -42,12 +42,18 @@ set hlsearch
 set nobackup
 set noswapfile
 set number
+set laststatus=2
 set shiftwidth=2
 set showmatch
 set smartindent
 set tabstop=2
 set termguicolors
 set wrapscan
+
+syntax enable
+
+au BufRead,BufNewFile *.tmpl set filetype=html
+
 noremap j gj
 noremap k gk
 inoremap jj <Esc>
