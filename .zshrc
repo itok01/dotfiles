@@ -1,36 +1,47 @@
-PATH="${PATH}:${HOME}/.local/bin"
-PATH="${PATH}:${HOME}/go/bin"
-
-# source switch-proxy
-
-source ~/.zplug/init.zsh
-
-zplug "zsh-users/zsh-completions"
-
-zplug "zsh-users/zsh-autosuggestions"
-
-zplug "zsh-users/zsh-syntax-highlighting"
- 
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+  print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+  command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+  command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+    print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+    print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
 
-zplug load --verbose > /dev/null
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+  zinit-zsh/z-a-rust \
+  zinit-zsh/z-a-as-monitor \
+  zinit-zsh/z-a-patch-dl \
+  zinit-zsh/z-a-bin-gem-node
+
+### End of Zinit's installer chunk
+
+
+# Fish-like autosuggestions for zsh
+zinit light zsh-users/zsh-autosuggestions
+
+# Fish shell like syntax highlighting for Zsh.
+zinit light zsh-users/zsh-syntax-highlighting
+
+# Additional completion definitions for Zsh.
+zinit light zsh-users/zsh-completions
+
+
+# The minimal, blazing-fast, and infinitely customizable prompt for any shell!
+if [ ! $(command -v starship) ]; then
+  curl -fsSL https://starship.rs/install.sh | zsh
+fi
+eval "$(starship init zsh)"
+
 
 autoload -U compinit
 compinit
 zstyle ':completion:*' menu select
-
-autoload -U promptinit
-promptinit
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
@@ -40,9 +51,7 @@ setopt hist_reduce_blanks
 setopt share_history
 
 typeset -A key
-
 key[Home]=${terminfo[khome]}
-
 key[End]=${terminfo[kend]}
 key[Insert]=${terminfo[kich1]}
 key[Delete]=${terminfo[kdch1]}
@@ -52,7 +61,6 @@ key[Left]=${terminfo[kcub1]}
 key[Right]=${terminfo[kcuf1]}
 key[PageUp]=${terminfo[kpp]}
 key[PageDown]=${terminfo[knp]}
-
 [[ -n "${key[Home]}"     ]]  && bindkey  "${key[Home]}"     beginning-of-line
 [[ -n "${key[End]}"      ]]  && bindkey  "${key[End]}"      end-of-line
 [[ -n "${key[Insert]}"   ]]  && bindkey  "${key[Insert]}"   overwrite-mode
@@ -63,30 +71,3 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[Right]}"    ]]  && bindkey  "${key[Right]}"    forward-char
 [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"   beginning-of-buffer-or-history
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" end-of-buffer-or-history
-
-if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
-    function zle-line-init () {
-        printf '%s' "${terminfo[smkx]}"
-    }
-    function zle-line-finish () {
-        printf '%s' "${terminfo[rmkx]}"
-    }
-    zle -N zle-line-init
-    zle -N zle-line-finish
-fi
-
-alias vim=nvim
-alias vi=nvim
-alias sudo='sudo '
-alias poweroff='systemctl poweroff'
-alias reboot='systemctl reboot'
-
-alias l='ls -lFh'
-alias la='ls -lAFh'
-alias lr='ls -tRFh'
-
-alias pacupg='sudo pacman -Syu'
-alias pacin='sudo pacman -S'
-
-alias yaupg='yay -Syu'
-alias yain='yay -S'
