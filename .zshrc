@@ -50,6 +50,7 @@ if [ ! $(command -v fzf) ]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   $HOME/.fzf/install
 fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # A modern replacement for ‘ls’.
 if [ ! $(command -v exa) ]; then
@@ -124,5 +125,3 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[Right]}"    ]]  && bindkey  "${key[Right]}"    forward-char
 [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"   beginning-of-buffer-or-history
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" end-of-buffer-or-history
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
