@@ -34,11 +34,64 @@ zinit light zsh-users/zsh-completions
 
 # The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 if [ ! $(command -v starship) ]; then
-  curl -fsSL https://starship.rs/install.sh | bash
+  curl -fsSL https://starship.rs/install.sh | zsh
 fi
 eval "$(starship init zsh)"
 
 
+# Rust
+if [ ! $(command -v rustup) ]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
+
+# command-line fuzzy finder
+if [ ! $(command -v fzf) ]; then
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  $HOME/.fzf/install
+fi
+
+# A modern replacement for ‘ls’.
+if [ ! $(command -v exa) ]; then
+  cargo install exa
+fi
+alias ls='exa --icons'
+
+# A cat(1) clone with wings.
+if [ ! $(command -v bat) ]; then
+  cargo install --locked bat
+fi
+alias cat='bat --paging=never'
+alias less='bat'
+
+# ripgrep recursively searches directories for a regex pattern while respecting your gitignore
+if [ ! $(command -v rg) ]; then
+  cargo install ripgrep
+fi
+
+# A simple, fast and user-friendly alternative to 'find'
+if [ ! $(command -v fd) ]; then
+  cargo install fd-find
+fi
+
+# An interactive cheatsheet tool for the command-line and application launchers
+if [ ! $(command -v navi) ]; then
+  cargo install navi
+fi
+
+# A viewer for git and diff output
+if [ ! $(command -v delta) ]; then
+  cargo install git-delta
+  git config --global core.pager 'delta'
+  git config --global interactive.diffFilter 'delta --color-only'
+  git config --global delta.line-numbers true
+  git config --global delta.diff-so-fancy true
+  git config --global delta.keep-plus-minus-markers true
+fi
+alias diff='delta'
+
+
+# Zsh config
 autoload -U compinit
 compinit
 zstyle ':completion:*' menu select
@@ -71,3 +124,5 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[Right]}"    ]]  && bindkey  "${key[Right]}"    forward-char
 [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"   beginning-of-buffer-or-history
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" end-of-buffer-or-history
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
