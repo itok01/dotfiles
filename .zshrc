@@ -34,7 +34,7 @@ zinit light zsh-users/zsh-completions
 
 # The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 if [ ! $(command -v starship) ]; then
-  curl -fsSL https://starship.rs/install.sh | zsh
+  curl -fsSL https://starship.rs/install.sh | bash
 fi
 eval "$(starship init zsh)"
 
