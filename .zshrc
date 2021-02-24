@@ -52,11 +52,11 @@ if [ ! $(command -v fzf) ]; then
   $HOME/.fzf/install
 fi
 
-# A modern replacement for ‘ls’.
-if [ ! $(command -v exa) ]; then
-  cargo install exa
+# The next gen ls command
+if [ ! $(command -v lsd) ]; then
+  cargo install lsd
 fi
-alias ls='exa --icons'
+alias ls='lsd'
 
 # A cat(1) clone with wings.
 if [ ! $(command -v bat) ]; then
