@@ -1,3 +1,10 @@
+# Extendable version manager with support for Ruby, Node.js, Elixir, Erlang & more
+if [ ! $(command -v asdf) ]; then
+  git clone https://github.com/asdf-vm/asdf ~/.asdf
+fi
+. $HOME/.asdf/asdf.sh
+fpath=(${ASDF_DIR}/completions $fpath)
+
 export PATH="$HOME/.cargo/bin/:$PATH"
 
 ### Added by Zinit's installer
@@ -84,8 +91,7 @@ alias diff='delta'
 
 
 # Zsh config
-autoload -U compinit
-compinit
+autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 
 HISTFILE=~/.zsh_history
