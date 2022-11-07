@@ -6,6 +6,7 @@ fi
 fpath=(${ASDF_DIR}/completions $fpath)
 
 export PATH="$HOME/.cargo/bin/:$PATH"
+export PATH="$HOME/go/bin/:$PATH"
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -21,7 +22,7 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Fish-like autosuggestions for zsh
-zinit light zsh-users/zsh-autosuggestions
+
 
 # Fish shell like syntax highlighting for Zsh.
 zinit light zsh-users/zsh-syntax-highlighting
