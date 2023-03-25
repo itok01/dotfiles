@@ -22,7 +22,7 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Fish-like autosuggestions for zsh
-
+zinit light zsh-users/zsh-autosuggestions
 
 # Fish shell like syntax highlighting for Zsh.
 zinit light zsh-users/zsh-syntax-highlighting
